@@ -4,7 +4,7 @@ import './styles.css'
 export const metadata: Metadata = {
   title: 'Weekend Crust Pizza',
   description: 'Three 12-inch pies. Order online for pickup.',
-  icons: { icon: '/icon.png' },
+  icons: { icon: { url: '/favicon.svg', type: 'image/svg+xml' } },
 }
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
