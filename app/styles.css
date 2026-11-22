@@ -116,8 +116,13 @@ nav a:hover, .nav-button:hover { color: var(--red); }
 }
 .footer-inner {
   min-height: calc(var(--footer-height) - 1px);
-  padding-block: 25px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  padding-block: 16px;
 }
+.footer-inner > :first-child { justify-self: start; }
+.footer-inner > :last-child { justify-self: end; }
+.store-footer .copyright { font-size: .82rem; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; }
 .cart-dialog { width: min(100%, 430px); height: 100dvh; max-height: 100dvh; max-width: 100%; position: fixed; inset: 0 0 0 auto; margin: 0; padding: 0; border: 0; border-left: 1px solid var(--line); color: var(--ink); background: var(--panel); }
 .cart-dialog::backdrop { background: #000a; }
@@ -179,6 +184,12 @@ nav a:hover, .nav-button:hover { color: var(--red); }
   .pizza-grid { grid-template-columns: 1fr; }
   .menu-section { padding-block: 25px 32px; }
   .section-heading { align-items: center; }
+}
+@media (max-width: 640px) {
+  .storefront { --footer-height: 136px; }
+  .footer-inner { grid-template-columns: 1fr; align-content: center; gap: 6px; }
+  .footer-inner > :first-child, .footer-inner > :last-child, .footer-inner > p { justify-self: center; }
+  .store-footer .copyright { order: 1; }
 }
 
 @media (pointer: coarse) {

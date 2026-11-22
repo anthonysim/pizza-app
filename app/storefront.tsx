@@ -156,7 +156,11 @@ export function Storefront({ customerId, staff, children }: { customerId?: strin
     </button> : null}
 
     <footer className="store-footer">
-      <div className="wrap footer-inner"><Brand /><p>Pickup only <span aria-hidden="true">·</span> Test orders</p></div>
+      <div className="wrap footer-inner">
+        <Brand />
+        <p className="copyright" suppressHydrationWarning>© {new Date().getFullYear()} Weekend Crust Pizza</p>
+        <p>Pickup only <span aria-hidden="true">·</span> Test orders</p>
+      </div>
     </footer>
 
     <dialog ref={dialog} id="cart-dialog" className="cart-dialog" aria-labelledby="cart-title"
