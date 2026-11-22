@@ -49,6 +49,10 @@ export function Storefront({ customerId, staff, children }: { customerId?: strin
     }
   }, [])
 
+  function openCart() {
+    dialog.current?.showModal()
+  }
+
   function save(next: SavedCart) {
     setSaved(next)
     try {
@@ -104,7 +108,7 @@ export function Storefront({ customerId, staff, children }: { customerId?: strin
     }
   }
 
-  return <>
+  return <div className="storefront">
     <header className="store-header">
       <div className="wrap header-inner">
         <Brand />
@@ -112,7 +116,7 @@ export function Storefront({ customerId, staff, children }: { customerId?: strin
           <a className="nav-menu" href="#menu">Menu</a>
           {staff ? <Link href="/staff">Staff</Link> : null}
           <Link href={customerId ? '/orders' : '/account'}>{customerId ? 'My orders' : 'Sign in'}</Link>
-          <button className="cart-toggle" onClick={() => dialog.current?.showModal()}>
+          <button className="cart-toggle" aria-haspopup="dialog" aria-controls="cart-dialog" onClick={openCart}>
             Cart <span>{count}</span>
           </button>
         </nav>
@@ -122,11 +126,19 @@ export function Storefront({ customerId, staff, children }: { customerId?: strin
     <AddToCart.Provider value={id => change(id, 1)}>{children}</AddToCart.Provider>
     <p role="status" className="sr-only">{notice} {count ? `${count} in cart.` : ''}</p>
 
+    {count > 0 ? <button className="button primary floating-cart" aria-haspopup="dialog"
+      aria-controls="cart-dialog" aria-label={`View cart, ${count} ${count === 1 ? 'item' : 'items'}, ${money(total)}`}
+      onClick={openCart}>
+      <span className="floating-cart-count" aria-hidden="true">{count}</span>
+      <span>View cart</span>
+      <span>{money(total)}</span>
+    </button> : null}
+
     <footer className="store-footer">
       <div className="wrap footer-inner"><Brand /><p>Pickup only <span aria-hidden="true">·</span> Test orders</p></div>
     </footer>
 
-    <dialog ref={dialog} className="cart-dialog" aria-labelledby="cart-title"
+    <dialog ref={dialog} id="cart-dialog" className="cart-dialog" aria-labelledby="cart-title"
       onClick={event => { if (event.target === event.currentTarget) dialog.current?.close() }}>
       <div className="cart-content">
         <div className="cart-heading"><h2 id="cart-title">YOUR CART</h2>
@@ -154,5 +166,5 @@ export function Storefront({ customerId, staff, children }: { customerId?: strin
         </>}
       </div>
     </dialog>
-  </>
+  </div>
 }
