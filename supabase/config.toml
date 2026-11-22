@@ -1,0 +1,37 @@
+project_id = "after-hours-pizza"
+
+[api]
+port = 54321
+schemas = ["public"]
+
+[db]
+port = 54322
+major_version = 17
+
+[db.seed]
+enabled = false
+
+[studio]
+enabled = true
+port = 54323
+
+[local_smtp]
+enabled = true
+port = 54324
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+minimum_password_length = 8
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+
+[auth.email.template.confirmation]
+subject = "Confirm your After Hours Pizza account"
+content_path = "./supabase/confirmation.html"
+
+[auth.email.template.magic_link]
+subject = "Your After Hours Pizza sign-in link"
+content_path = "./supabase/magic-link.html"
