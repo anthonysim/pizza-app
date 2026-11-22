@@ -2,7 +2,23 @@
 
 A local-first pickup ordering app built with Next.js, React, TypeScript, Supabase, and Stripe Checkout. The menu offers Margherita, Pepperoni, and Mushroom in one 12-inch size. Stripe accepts test card payments only.
 
-## Run locally
+## Start the full local stack
+
+Install the app dependencies with `npm install`. You also need Docker Desktop, Supabase CLI 2.108 or newer, and Stripe CLI. On macOS, install the CLIs with `brew install supabase/tap/supabase stripe`.
+
+Set `STRIPE_SECRET_KEY` in `.env.local` to your sandbox secret key beginning with `sk_test_`. If you are setting up a fresh checkout, copy `.env.example` to `.env.local` first.
+
+```sh
+./start.sh
+```
+
+You can also run `npm run dev:all`.
+
+The command opens Docker Desktop on macOS when needed, starts or reuses local Supabase, connects the Stripe listener with the same test key as the app, and runs Next.js at [localhost:3000](http://localhost:3000). It passes the local Supabase keys and webhook signing secret to Next.js automatically. Open the [local email inbox](http://localhost:54324) for signup and magic links.
+
+Press Ctrl+C to stop Next.js and the Stripe listener. Run `supabase stop` when you are done with the local Supabase services.
+
+## Start services manually
 
 You need Node.js 22.13 or newer, a running Docker engine, Supabase CLI 2.108 or newer, and Stripe CLI with access to a Stripe sandbox.
 
