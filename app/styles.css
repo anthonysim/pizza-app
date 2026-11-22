@@ -45,7 +45,7 @@ nav a:hover, .nav-button:hover { color: var(--red); }
 .hero-description { color: var(--muted); margin: 23px 0; font-size: 1rem; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-copy > * {
+  :where([data-fresh-visit]) .hero-copy > * {
     animation: hero-reveal 720ms cubic-bezier(.22, .61, .36, 1) backwards;
   }
   .hero-copy > .eyebrow { animation-delay: 160ms; }

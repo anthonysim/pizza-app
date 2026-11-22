@@ -8,5 +8,14 @@ export const metadata: Metadata = {
 }
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}</body></html>
+  return <html lang="en" suppressHydrationWarning>
+    <head>
+      <script dangerouslySetInnerHTML={{ __html: `
+        if (performance.getEntriesByType('navigation')[0]?.type === 'navigate') {
+          document.documentElement.dataset.freshVisit = ''
+        }
+      ` }} />
+    </head>
+    <body>{children}</body>
+  </html>
 }
