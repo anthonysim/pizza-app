@@ -14,9 +14,6 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; line-height: 1.5; }
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
-}
 h1, h2, h3, p { margin: 0; }
 button, input { font: inherit; }
 button { cursor: pointer; }
@@ -39,13 +36,29 @@ nav a:hover, .nav-button:hover { color: var(--red); }
 .hero-photo { position: absolute; inset: 0 0 0 25%; z-index: -1; }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #140f0e 1%, #140f0ef5 13%, #140f0e96 36%, transparent 74%), linear-gradient(0deg, #140f0e75, transparent 34%); }
-.hero-copy { padding-block: 54px; }
+.hero-copy { padding-block: 54px; overflow-anchor: none; }
 .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--red); letter-spacing: .16em; font-size: .875rem; font-weight: 800; margin-bottom: 19px; }
 .eyebrow span { font-size: 1rem; }
 .hero h1, .section-heading h2, .cart-heading h2 { font-family: Impact, "Arial Black", "Helvetica Neue", sans-serif; font-weight: 900; }
 .hero h1 { font-size: clamp(3.3rem, 7.6vw, 7.65rem); line-height: .98; letter-spacing: -.032em; }
 .hero h1 em { font-style: normal; color: var(--red); }
 .hero-description { color: var(--muted); margin: 23px 0; font-size: 1rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy > * {
+    animation: hero-reveal 720ms cubic-bezier(.22, .61, .36, 1) backwards;
+  }
+  .hero-copy > .eyebrow { animation-delay: 160ms; }
+  .hero-copy > h1 { animation-delay: 340ms; }
+  .hero-copy > .hero-description { animation-delay: 520ms; }
+  .hero-copy > .button { animation-delay: 700ms; }
+  .hero-copy > .button:focus-visible { animation: none; }
+}
+
+@keyframes hero-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; padding: 10px 17px; border: 1px solid transparent; border-radius: 6px; font-weight: 800; line-height: 1.25; gap: 7px; text-align: center; }
 .primary { color: #1b100e; background: var(--red); }
 .primary:hover:not(:disabled) { background: var(--red-hover); }

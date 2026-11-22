@@ -1,7 +1,7 @@
 import { menu, money } from '../lib/menu'
 import { getSession } from '../lib/session'
 import { isStaff } from '../lib/orders'
-import { AddPizza, Storefront } from './storefront'
+import { AddPizza, MenuLink, Storefront } from './storefront'
 
 export default async function Home() {
   const session = await getSession()
@@ -16,11 +16,11 @@ export default async function Home() {
           <p className="eyebrow"><span aria-hidden="true">✳</span> WEEKEND CRUST PIZZA</p>
           <h1>THREE PIES.<br /><em>ONE GOOD NIGHT.</em></h1>
           <p className="hero-description">Three 12-inch pizzas, baked to order.<br />Order online and pick up at the counter.</p>
-          <a className="button primary" href="#menu">Explore the menu</a>
+          <MenuLink className="button primary">Explore the menu</MenuLink>
         </div>
       </section>
 
-      <section id="menu" className="wrap menu-section">
+      <section id="menu" className="wrap menu-section" tabIndex={-1}>
         <div className="section-heading">
           <h2>THE MENU <span aria-hidden="true">✳</span></h2>
           <p>12″ pies <span aria-hidden="true">·</span> Pickup only</p>

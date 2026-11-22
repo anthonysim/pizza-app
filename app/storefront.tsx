@@ -16,6 +16,27 @@ export function AddPizza({ id, name }: { id: PizzaId; name: string }) {
   </button>
 }
 
+export function MenuLink({ children, className, onNavigate }: {
+  children: ReactNode
+  className: string
+  onNavigate?: () => void
+}) {
+  return <a href="#menu" className={className} onClick={event => {
+    if (event.defaultPrevented || event.button !== 0 ||
+      event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+
+    const section = document.getElementById('menu')
+    if (!section) return
+
+    event.preventDefault()
+    onNavigate?.()
+    if (window.location.hash !== '#menu') window.history.pushState(null, '', '#menu')
+    const animate = window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+    section.focus({ preventScroll: true })
+    section.scrollIntoView({ behavior: animate ? 'smooth' : 'instant' })
+  }}>{children}</a>
+}
+
 function readCart(): SavedCart {
   try {
     const saved = JSON.parse(localStorage.getItem(cartKey) ?? '{}') as SavedCart
@@ -113,7 +134,7 @@ export function Storefront({ customerId, staff, children }: { customerId?: strin
       <div className="wrap header-inner">
         <Brand />
         <nav aria-label="Main navigation">
-          <a className="nav-menu" href="#menu">Menu</a>
+          <MenuLink className="nav-menu">Menu</MenuLink>
           {staff ? <Link href="/staff">Staff</Link> : null}
           <Link href={customerId ? '/orders' : '/account'}>{customerId ? 'My orders' : 'Sign in'}</Link>
           <button className="cart-toggle" aria-haspopup="dialog" aria-controls="cart-dialog" onClick={openCart}>
@@ -145,7 +166,7 @@ export function Storefront({ customerId, staff, children }: { customerId?: strin
           <button className="close" aria-label="Close cart" onClick={() => dialog.current?.close()}>×</button>
         </div>
         {count === 0 ? <div className="empty-cart"><p>Your cart is empty.</p>
-          <a href="#menu" className="button outlined" onClick={() => dialog.current?.close()}>Browse pizzas</a>
+          <MenuLink className="button outlined" onNavigate={() => dialog.current?.close()}>Browse pizzas</MenuLink>
         </div> : <>
           <ul className="cart-items">
             {items.map(item => <li key={item.id}>
