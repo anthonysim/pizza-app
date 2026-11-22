@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './styles.css'
 
 export const metadata: Metadata = {
-  title: 'After Hours Pizza',
+  title: 'Weekend Crust Pizza',
   description: 'Three 12-inch pies. Order online for pickup.',
   icons: { icon: '/icon.png' },
 }

@@ -13,7 +13,7 @@ export default async function Home() {
           <img src="/hero.webp" alt="" fetchPriority="high" />
         </div>
         <div className="wrap hero-copy">
-          <p className="eyebrow"><span aria-hidden="true">✳</span> AFTER HOURS PIZZA</p>
+          <p className="eyebrow"><span aria-hidden="true">✳</span> WEEKEND CRUST PIZZA</p>
           <h1>THREE PIES.<br /><em>ONE GOOD NIGHT.</em></h1>
           <p className="hero-description">Three 12-inch pizzas, baked to order.<br />Order online and pick up at the counter.</p>
           <a className="button primary" href="#menu">Explore the menu</a>

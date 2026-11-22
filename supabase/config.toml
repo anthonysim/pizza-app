@@ -29,9 +29,9 @@ enable_signup = true
 enable_confirmations = true
 
 [auth.email.template.confirmation]
-subject = "Confirm your After Hours Pizza account"
+subject = "Confirm your Weekend Crust Pizza account"
 content_path = "./supabase/confirmation.html"
 
 [auth.email.template.magic_link]
-subject = "Your After Hours Pizza sign-in link"
+subject = "Your Weekend Crust Pizza sign-in link"
 content_path = "./supabase/magic-link.html"

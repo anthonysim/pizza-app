@@ -7,7 +7,7 @@ export const menu = [
 export type PizzaId = typeof menu[number]['id']
 export type Cart = Partial<Record<PizzaId, number>>
 export const maxQuantity = 12
-export const pickup = 'After Hours Pizza · Test pickup counter'
+export const pickup = 'Weekend Crust Pizza · Test pickup counter'
 
 export const money = (cents: number) => new Intl.NumberFormat('en-US', {
   style: 'currency', currency: 'USD', maximumFractionDigits: cents % 100 ? 2 : 0,

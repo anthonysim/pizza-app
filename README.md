@@ -1,4 +1,4 @@
-# After Hours Pizza
+# Weekend Crust Pizza
 
 A local-first pickup ordering app built with Next.js, React, TypeScript, Supabase, and Stripe Checkout. The menu offers Margherita, Pepperoni, and Mushroom in one 12-inch size. Stripe accepts test card payments only.
 
