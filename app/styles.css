@@ -140,6 +140,7 @@ nav a:hover, .nav-button:hover { color: var(--red); }
 .cart-items li > div:first-child { display: grid; }
 .cart-items li > div:first-child span { color: var(--muted); }
 .quantity { display: flex; align-items: center; gap: 10px; }
+.quantity svg { display: block; margin: auto; }
 .cart-total { margin: 18px 0 10px; font-size: 1.1rem; }
 .muted { color: var(--muted); margin-bottom: 16px; }
 .empty-cart p, .panel > p:first-child { margin-bottom: 16px; }
